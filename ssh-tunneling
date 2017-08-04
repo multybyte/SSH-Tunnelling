@@ -1,0 +1,15 @@
+*SSH tunnelling* - 
+this lets you use an SSH connection as a tunnel for other traffic. 
+This is really useful say if you're connecting to a dual-homed machine, and it can access another network that you can't.
+
+Examples:
+*ssh someuser@someserver -L <lport>:<ip>:<port>*
+the -L argument here will open port <lport> on your local machine, and connect to <ip>:<port> at the other end if you send traffic down it
+
+ 
+*ssh someuser@someserver -R <rport>:<ip>:<port>* 
+this is similar but in reverse: port <rport> is open on the *remote* machine (i.e. "someserver"), and then anything that connects to that will come back through the SSH connection, and be forwarded onto <ip>:<port>
+
+
+*ssh someuser@someserver -D <port>*
+this sets up a SOCKS proxy through the SSH connection, listening on port <port>. This can then be used by any applications that know how to use SOCKS proxies.
